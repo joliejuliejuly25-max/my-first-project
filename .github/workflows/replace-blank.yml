@@ -1,0 +1,31 @@
+name: Replace blank.docx
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/replace-blank.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  replace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download corrected DOCX
+        run: |
+          curl -fL 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-eaa4-8246-a980-3097b3b81f77/raw?se=2026-09-30T15%3A14%3A57Z&sp=r&sv=2026-02-06&sr=b&scid=91a64d9d-3b8a-55dc-9e35-154594a2456c&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-30T14%3A46%3A54Z&ske=2026-10-01T14%3A46%3A54Z&sks=b&skv=2026-02-06&sig=oDLqMTgzUvAu/epkcnSmIfHhyoOTAtE09ltrdBYdkFM%3D' -o blank.docx
+          unzip -t blank.docx >/dev/null
+      - name: Commit corrected blank.docx
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blank.docx
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Restore original bison proportions in blank.docx"
+            git push
+          fi
