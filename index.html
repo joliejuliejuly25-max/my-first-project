@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Мой первый проект — современная стартовая страница." />
+  <title>Мой первый проект</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-deep: #07111f;
+      --bg-soft: #102a43;
+      --accent: #7c3aed;
+      --accent-2: #22d3ee;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.34), transparent 34%),
+        radial-gradient(circle at 85% 15%, rgba(34, 211, 238, 0.23), transparent 30%),
+        linear-gradient(135deg, var(--bg-deep), var(--bg-soft));
+      overflow: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    body::before {
+      background: #8b5cf6;
+      top: -120px;
+      right: -80px;
+    }
+
+    body::after {
+      background: #06b6d4;
+      left: -130px;
+      bottom: -150px;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .card {
+      width: min(920px, 100%);
+      padding: clamp(36px, 7vw, 78px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 28px;
+      background: rgba(10, 20, 35, 0.58);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #dbeafe;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    .badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 18px var(--accent-2);
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      margin-bottom: 24px;
+      background: linear-gradient(90deg, #ffffff, #c4b5fd 46%, #67e8f9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    p {
+      max-width: 650px;
+      margin: 0 auto 34px;
+      color: var(--muted);
+      font-size: clamp(17px, 2.2vw, 21px);
+      line-height: 1.7;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 190px;
+      padding: 15px 24px;
+      border-radius: 14px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      background: linear-gradient(135deg, var(--accent), #4f46e5);
+      box-shadow: 0 14px 34px rgba(79, 70, 229, 0.36);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 42px rgba(79, 70, 229, 0.5);
+    }
+
+    .button:focus-visible {
+      outline: 3px solid rgba(103, 232, 249, 0.75);
+      outline-offset: 4px;
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        padding: 18px;
+      }
+
+      .card {
+        border-radius: 22px;
+        padding: 40px 24px;
+      }
+
+      body {
+        overflow: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="card" aria-labelledby="main-title">
+      <div class="badge">Старт нового проекта</div>
+      <h1 id="main-title">Мой первый проект</h1>
+      <p>
+        Добро пожаловать! Это моя первая страница, созданная с нуля.
+        Здесь начинается проект, который можно развивать, наполнять идеями
+        и превращать в настоящий современный сайт.
+      </p>
+      <a class="button" href="#start" id="start">Начать знакомство</a>
+      <div class="footer-note">Сделано с любопытством и желанием создавать новое ✦</div>
+    </section>
+  </main>
+</body>
+</html>
